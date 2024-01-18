@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms.DataVisualization.Charting;
 
 namespace UI
@@ -18,7 +15,7 @@ namespace UI
             _imgPath = imgPath;
         }
 
-        //histogram equalization
+
         public ImageModel HistogramEquaization()
         {
             var outputImage=new ImageModel();
@@ -225,11 +222,18 @@ namespace UI
             Bitmap inputBitmap = new Bitmap(_imgPath);
 
             //this kernel is for sharpening the image
-            double[,] kernel = {
-                        { 0,-1,0 },
-                        { -1,5,-1},
-                        { 0,-1,0}
-                    };
+            //double[,] kernel = {
+            //            { 0,-1,0 },
+            //            { -1,5,-1},
+            //            { 0,-1,0}
+            //        };
+
+            double[,] kernel =
+            {
+                {-1,0,1 },
+                {-2,0,2 },
+                {-1,0,1 }
+            };
 
 
             Bitmap outputBitmap = applyConvolution(inputBitmap, kernel);
