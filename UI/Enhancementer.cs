@@ -222,19 +222,28 @@ namespace UI
             Bitmap inputBitmap = new Bitmap(_imgPath);
 
             //this kernel is for sharpening the image
-            //double[,] kernel = {
-            //            { 0,-1,0 },
-            //            { -1,5,-1},
-            //            { 0,-1,0}
-            //        };
+            double[,] sharpenningKernel = {
+                        { 0,-1,0 },
+                        { -1,5,-1},
+                        { 0,-1,0}
+                    };
 
-            double[,] kernel =
+            //sobel filter kernel
+            double[,] sobelKernel =
             {
                 {-1,0,1 },
                 {-2,0,2 },
                 {-1,0,1 }
             };
 
+            //Prewit Operator
+            double[,] prewitKernel = {
+                {-1,0,1 },
+                {-1,0,1 },
+                {-1,0,1 }
+            };
+
+            double[,] kernel = sharpenningKernel;
 
             Bitmap outputBitmap = applyConvolution(inputBitmap, kernel);
 
